@@ -1,0 +1,66 @@
+version: '3'
+services:
+  #redis
+  redis-stack:
+    image: redis/redis-stack:latest
+    container_name: ghtk-redis
+    ports:
+      - 6379:6379
+    restart: always
+
+  #zookeeper + kafka
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: ghtk-zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - ghtk-ecom
+  kafka:
+    image: wurstmeister/kafka
+    container_name: ghtk-kafka
+    hostname: kafka
+    ports:
+      - "9093:9093"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "ghtktopic"
+    networks:
+      - ghtk-ecom
+
+  #elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.22
+    container_name: ghtk-elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=datasearch
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - cluster.initial_master_nodes=elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.22
+    ports:
+      - "5601:5601"
+
+#volume
+volumes:
+  esdata:
+
+#network kafka
+networks:
+  ghtk-ecom:
+    driver: bridge

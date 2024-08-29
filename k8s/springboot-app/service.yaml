@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghtk-ecom-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: ghtk-ecom-app
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090

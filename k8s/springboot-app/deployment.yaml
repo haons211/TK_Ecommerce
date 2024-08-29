@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghtk-ecom
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ghtk-ecom-app
+  template:
+    metadata:
+      labels:
+        app: ghtk-ecom-app
+    spec:
+      containers:
+        - name: ghtk-ecom-app
+          image: hoadam374/ghtk-ecom:v1.11
+          ports:
+            - containerPort: 9090
+          env:
+            - name: MYSQL_HOST
+              value: mysql-service
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USERNAME
+              value: root
+            - name: MYSQL_PASSWORD
+              value: root
+            - name: REDIS_HOST
+              value: redis-service
+            - name: REDIS_PORT
+              value: "6379"
