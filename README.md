@@ -2,7 +2,7 @@
 
 ## Overall view
 
-![Ecommerce Architect.svg](Ecommerce%20Architect.svg)]
+![Ecommerce Architect.svg](Ecommerce%20Architect.svg)
 
 ## List what has been used
 
@@ -17,12 +17,12 @@
 - [Docker](https://www.docker.com/) and docker-compose, for containerization
 - [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
   provides repository support for the Jakarta Persistence API
-- [JWT]([JSON Web Tokens - jwt.io](https://jwt.io/)) for providing authentication, user management, fine-grained authorization
-- [MySQL]([MySQL](https://www.mysql.com/)
-- [ElasticSearch]([Elasticsearch: The Official Distributed Search & Analytics Engine | Elastic](https://www.elastic.co/elasticsearch)) , A distributed search and analytics engine used for quickly querying and analyzing large volumes of data.
-- [Kibina]([Kibana: Explore, Visualize, Discover Data | Elastic](https://www.elastic.co/kibana)) , A data visualization tool for ElasticSearch, providing real-time analytics and visual insights.
+- [JWT]((https://jwt.io/)) for providing authentication, user management, fine-grained authorization
+- [MySQL]((https://www.mysql.com/)) for storing data
+- [ElasticSearch]((https://www.elastic.co/elasticsearch)) , A distributed search and analytics engine used for quickly querying and analyzing large volumes of data.
+- [Kibina]((https://www.elastic.co/kibana)) , A data visualization tool for ElasticSearch, providing real-time analytics and visual insights.
 - [Zookeeper]([Apache ZooKeeper](https://zookeeper.apache.org/)) , A centralized service for maintaining configuration information, naming, and providing distributed synchronization.
-- [GCP]([Cloud Computing Services | Google Cloud](https://cloud.google.com/)) , For additional cloud services and infrastructure as needed for scalability, storage, and analytics.
+- [GCP]((https://cloud.google.com/)) , For additional cloud services and infrastructure as needed for scalability, storage, and analytics.
 
 ## Prerequisite
 
